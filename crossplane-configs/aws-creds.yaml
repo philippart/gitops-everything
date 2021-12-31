@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-creds
-  namespace: crossplane-system
-type: Opaque
-data:
-  creds: W215cHJvZmlsZV0KYXdzX2FjY2Vzc19rZXlfaWQgPSBBU0lBMkhZUUhXWkRUWE5PQUxaNQphd3Nfc2VjcmV0X2FjY2Vzc19rZXkgPSBYdjZmWk1VbW44SC9ZMmh1cHFqREFWWGpsQ1hkTzN1V1JFL0Z6WDlNCg==
