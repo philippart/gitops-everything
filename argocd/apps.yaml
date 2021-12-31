@@ -1,21 +1,23 @@
+---
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
+  name: production
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
-    path: sealed-secrets
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
+    path: production
   destination:
     server: https://kubernetes.default.svc
+    namespace: production
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
       allowEmpty: true
-

@@ -9,7 +9,7 @@ spec:
   project: production
   source:
     path: argo-cd/overlays/production
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -18,4 +18,3 @@ spec:
       selfHeal: true
       prune: true
       allowEmpty: true
-

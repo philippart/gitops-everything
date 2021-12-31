@@ -1,9 +1,9 @@
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: nokia.com/v1alpha1
 kind: CompositeCluster
 metadata:
   name: team-a
   labels:
-    cluster-owner: vfarcic
+    cluster-owner: laurent
 spec:
   id: team-a
   compositionRef:
@@ -11,5 +11,5 @@ spec:
   parameters:
     # Possible values small, medium, large
     nodeSize: small
-    # version: "1.20"
+    # version: "1.21"
     # minNodeCount: 1

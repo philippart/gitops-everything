@@ -1,13 +1,13 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: compositeclusters.devopstoolkitseries.com
+  name: compositeclusters.nokia.com
 spec:
   connectionSecretKeys:
   - kubeconfig
   defaultCompositionRef:
-    name: cluster-google
-  group: devopstoolkitseries.com
+    name: cluster-aws
+  group: nokia.com
   names:
     kind: CompositeCluster
     plural: compositeclusters

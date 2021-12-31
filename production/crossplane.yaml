@@ -12,7 +12,7 @@ spec:
   source:
     chart: crossplane
     repoURL: https://charts.crossplane.io/stable
-    targetRevision: "1.3.0"
+    targetRevision: "1.5.0"
   destination:
     namespace: crossplane-system
     server: https://kubernetes.default.svc
@@ -32,12 +32,12 @@ metadata:
   name: crossplane-providers
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
     path: crossplane-providers
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -55,12 +55,12 @@ metadata:
   name: crossplane-configs
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
     path: crossplane-configs
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -78,12 +78,12 @@ metadata:
   name: crossplane-compositions
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
     path: crossplane-compositions
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -92,4 +92,3 @@ spec:
       selfHeal: true
       prune: true
       allowEmpty: true
-

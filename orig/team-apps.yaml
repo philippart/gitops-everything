@@ -4,12 +4,12 @@ metadata:
   name: team-a-apps
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
     path: team-a-apps
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: team-a

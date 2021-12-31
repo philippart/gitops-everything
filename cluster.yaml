@@ -1,9 +1,9 @@
-apiVersion: devopstoolkitseries.com/v1alpha1
+apiVersion: nokia.com/v1alpha1
 kind: CompositeCluster
 metadata:
   name: team-a
   labels:
-    cluster-owner: vfarcic
+    cluster-owner: laurent
 spec:
   compositionRef:
     name: cluster-aws

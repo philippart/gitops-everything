@@ -1,3 +1,5 @@
+---
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -9,7 +11,7 @@ spec:
   project: production
   source:
     path: team-a-infra
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -18,4 +20,3 @@ spec:
       selfHeal: true
       prune: true
       allowEmpty: true
-

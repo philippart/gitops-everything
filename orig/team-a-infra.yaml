@@ -4,12 +4,12 @@ metadata:
   name: team-a-infra
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: production
   source:
     path: team-a-infra
-    repoURL: https://github.com/vfarcic/crossplane-kubevela-argocd-demo
+    repoURL: https://github.com/philippart/gitops-everything
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -17,4 +17,3 @@ spec:
     automated:
       selfHeal: true
       prune: true
-

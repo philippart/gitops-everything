@@ -1,10 +1,11 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: cluster-aws
+  name: cluster-aws-inside
   labels:
     provider: aws
     cluster: eks
+    account: inside
 spec:
   compositeTypeRef:
     apiVersion: nokia.com/v1alpha1

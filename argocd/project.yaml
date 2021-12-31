@@ -10,13 +10,13 @@ metadata:
 spec:
   description: Production project
   sourceRepos:
-  - '*'
+    - '*'
   destinations:
-  - namespace: '*'
-    server: '*'
+    - namespace: '*'
+      server: '*'
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'
   namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'
