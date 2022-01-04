@@ -1,0 +1,60 @@
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
+metadata:
+  name: vpc-nodepool
+  annotations:
+    crossplane.io/external-name: vpc-0b749e4d76f609b73
+spec:
+  forProvider:
+    cidrBlock: 10.176.20.0/26
+
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: sg-nodepool
+  annotations:
+    crossplane.io/external-name: sg-037997298a1a780fc
+spec:
+  forProvider:
+    description: default VPC security group
+    groupName: nokia-catalog
+
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-nodepool-1a
+  annotations:
+    crossplane.io/external-name: subnet-0755889bac75464a0
+  labels:
+    zone: eu-central-1a
+    access: private
+spec:
+  forProvider:
+    cidrBlock: 10.176.20.0/27
+    tags:
+      - key: kubernetes.io/role/elb
+        value: "1"
+
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-nodepool-1b
+  annotations:
+    crossplane.io/external-name: subnet-06d7e0bbd0d660f1e
+  labels:
+    zone: eu-central-1b
+    access: private
+spec:
+  forProvider:
+    cidrBlock: 10.176.20.32/27
+    tags:
+      - key: kubernetes.io/role/elb
+        value: "1"

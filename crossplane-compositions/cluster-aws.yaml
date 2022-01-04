@@ -21,7 +21,7 @@ spec:
       kind: Cluster
       spec:
         forProvider:
-          region: us-central-1
+          region: eu-central-1
           version: "1.21"
           roleArnSelector:
             matchControllerRef: true
@@ -63,7 +63,7 @@ spec:
       kind: NodeGroup
       spec:
         forProvider:
-          region: us-central-1
+          region: eu-central-1
           clusterNameSelector:
             matchControllerRef: true
           nodeRoleSelector:
@@ -263,7 +263,7 @@ spec:
       kind: VPC
       spec:
         forProvider:
-          region: us-central-1
+          region: eu-central-1
           cidrBlock: 10.0.0.0/16
           enableDnsSupport: true
     patches:
@@ -277,7 +277,7 @@ spec:
         forProvider:
           description: Cluster communication with worker nodes
           groupName: nokia-catalog
-          region: us-central-1
+          region: eu-central-1
           vpcIdSelector:
             matchControllerRef: true
           egress:
@@ -295,12 +295,12 @@ spec:
       kind: Subnet
       metadata:
         labels:
-          zone: us-central-1a
+          zone: eu-central-1a
           access: public
       spec:
         forProvider:
-          region: us-central-1
-          availabilityZone: us-central-1a
+          region: eu-central-1
+          availabilityZone: eu-central-1a
           cidrBlock: 10.0.0.0/24
           vpcIdSelector:
             matchControllerRef: true
@@ -321,12 +321,12 @@ spec:
       kind: Subnet
       metadata:
         labels:
-          zone: us-central-1b
+          zone: eu-central-1b
           access: public
       spec:
         forProvider:
-          region: us-central-1
-          availabilityZone: us-central-1b
+          region: eu-central-1
+          availabilityZone: eu-central-1b
           cidrBlock: 10.0.1.0/24
           vpcIdSelector:
             matchControllerRef: true
@@ -341,39 +341,13 @@ spec:
       - type: string
         string:
           fmt: "%s-1b"
-  - name: subnet-nodepool-1c
-    base:
-      apiVersion: ec2.aws.crossplane.io/v1beta1
-      kind: Subnet
-      metadata:
-        labels:
-          zone: us-central-1c
-          access: public
-      spec:
-        forProvider:
-          region: us-central-1
-          availabilityZone: us-central-1c
-          cidrBlock: 10.0.2.0/24
-          vpcIdSelector:
-            matchControllerRef: true
-          mapPublicIPOnLaunch: true
-          tags:
-          - key: kubernetes.io/role/elb
-            value: "1"
-    patches:
-    - fromFieldPath: spec.id
-      toFieldPath: metadata.name
-      transforms:
-      - type: string
-        string:
-          fmt: "%s-1c"
   - name: gateway
     base:
       apiVersion: ec2.aws.crossplane.io/v1beta1
       kind: InternetGateway
       spec:
         forProvider:
-          region: us-central-1
+          region: eu-central-1
           vpcIdSelector:
             matchControllerRef: true
     patches:
@@ -385,7 +359,7 @@ spec:
       kind: RouteTable
       spec:
         forProvider:
-          region: us-central-1
+          region: eu-central-1
           vpcIdSelector:
             matchControllerRef: true
           routes:
@@ -396,17 +370,12 @@ spec:
           - subnetIdSelector:
               matchControllerRef: true
               matchLabels:
-                zone: us-central-1a
+                zone: eu-central-1a
                 access: public
           - subnetIdSelector:
               matchControllerRef: true
               matchLabels:
-                zone: us-central-1b
-                access: public
-          - subnetIdSelector:
-              matchControllerRef: true
-              matchLabels:
-                zone: us-central-1c
+                zone: eu-central-1b
                 access: public
     patches:
     - fromFieldPath: spec.id
