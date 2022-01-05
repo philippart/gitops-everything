@@ -31,8 +31,11 @@ spec:
           resourcesVpcConfig:
             endpointPrivateAccess: true
             endpointPublicAccess: true
+            securityGroupIdRefs:
+            - name: sg-nodepool
             subnetIdSelector:
-              matchControllerRef: true
+              matchLabels:
+                access: intranet
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
@@ -73,7 +76,7 @@ spec:
               role: nodegroup
           subnetSelector:
             matchLabels:
-              access: private
+              access: intranet
           scalingConfig:
             minSize: 1
             maxSize: 3
@@ -104,13 +107,14 @@ spec:
       matchString: ACTIVE
   - name: iamrole-controlplane
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRole
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: Role
       metadata:
         labels:
           role: controlplane
       spec:
         forProvider:
+          description: Allow EKS to access other services like EC2
           assumeRolePolicyDocument: |
             {
               "Version": "2012-10-17",
@@ -135,15 +139,22 @@ spec:
       - type: string
         string:
           fmt: "%s-controlplane"
+    - fromFieldPath: spec.account
+      toFieldPath: spec.forProvider.permissionsBoundary
+      transforms:
+      - type: string
+        string:
+          fmt: "arn:aws:iam::%s:policy/NokiaBoundary"
   - name: iamrole-nodegroup
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRole
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: Role
       metadata:
         labels:
           role: nodegroup
       spec:
         forProvider:
+          description:  Allow EC2 to access other services like CNI, ECR...
           assumeRolePolicyDocument: |
             {
               "Version": "2012-10-17",
@@ -168,10 +179,16 @@ spec:
       - type: string
         string:
           fmt: "%s-nodegroup"
+    - fromFieldPath: spec.account
+      toFieldPath: spec.forProvider.permissionsBoundary
+      transforms:
+      - type: string
+        string:
+          fmt: "arn:aws:iam::%s:policy/NokiaBoundary"
   - name: iamattachment-controlplane
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRolePolicyAttachment
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: RolePolicyAttachment
       spec:
         forProvider:
           policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
@@ -188,8 +205,8 @@ spec:
           fmt: "%s-controlplane"
   - name: iamattachment-service
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRolePolicyAttachment
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: RolePolicyAttachment
       spec:
         forProvider:
           policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
@@ -206,8 +223,8 @@ spec:
           fmt: "%s-service"
   - name: iamattachment-worker
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRolePolicyAttachment
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: RolePolicyAttachment
       spec:
         forProvider:
           policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
@@ -224,8 +241,8 @@ spec:
           fmt: "%s-worker"
   - name: iamattachment-cni
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRolePolicyAttachment
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: RolePolicyAttachment
       spec:
         forProvider:
           policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
@@ -242,8 +259,8 @@ spec:
           fmt: "%s-cni"
   - name: iamattachment-registry
     base:
-      apiVersion: identity.aws.crossplane.io/v1beta1
-      kind: IAMRolePolicyAttachment
+      apiVersion: iam.aws.crossplane.io/v1beta1
+      kind: RolePolicyAttachment
       spec:
         forProvider:
           policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly

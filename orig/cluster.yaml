@@ -6,6 +6,8 @@ metadata:
     cluster-owner: laurent
 spec:
   id: team-a
+  # to be updated
+  account: 123456789012
   compositionRef:
     name: cluster-aws
   parameters:

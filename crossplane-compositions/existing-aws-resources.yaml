@@ -21,7 +21,7 @@ metadata:
 spec:
   forProvider:
     description: default VPC security group
-    groupName: nokia-catalog
+    groupName: nokia-nodepool
 
 ---
 
@@ -33,12 +33,12 @@ metadata:
     crossplane.io/external-name: subnet-0755889bac75464a0
   labels:
     zone: eu-central-1a
-    access: private
+    access: intranet
 spec:
   forProvider:
     cidrBlock: 10.176.20.0/27
     tags:
-      - key: kubernetes.io/role/elb
+      - key: kubernetes.io/role/internal-elb
         value: "1"
 
 ---
@@ -51,10 +51,10 @@ metadata:
     crossplane.io/external-name: subnet-06d7e0bbd0d660f1e
   labels:
     zone: eu-central-1b
-    access: private
+    access: intranet
 spec:
   forProvider:
     cidrBlock: 10.176.20.32/27
     tags:
-      - key: kubernetes.io/role/elb
+      - key: kubernetes.io/role/internal-elb
         value: "1"

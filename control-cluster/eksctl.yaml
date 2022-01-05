@@ -1,0 +1,29 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: control-cluster
+  region: eu-central-1
+
+iam:
+  # replace by real account number
+  serviceRolePermissionsBoundary: arn:aws:iam::123456789012:policy/NokiaBoundary
+
+vpc:
+  # replace by real security group id
+  sharedNodeSecurityGroup: sg-0123456789
+  subnets:
+    private:
+      # replace by real subnet ids
+      eu-central-1a: { id: subnet-0ff156e0c4a6d300c }
+      eu-central-1b: { id: subnet-0549cdab573695c03 }
+
+nodeGroups:
+  - name: ng-workers
+    labels: { role: workers }
+    instanceType: t4g.small
+    desiredCapacity: 1
+    privateNetworking: true
+    iam:
+      # replace by real account number
+      instanceRolePermissionsBoundary: arn:aws:iam::123456789012:policy/NokiaBoundary

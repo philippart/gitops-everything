@@ -14,6 +14,9 @@ A demo showcasing:
   - Update repo URLs and resource path
   - Use EC2 t4g instances instead of t3
   - Change region to eu-central-1
+  - Import and reference existing AWS managed resources
+  - Add permission boundary to IAM roles
+  - Require AWS account number in the Cluster XRD 
 
 ## Todo
 - Create a new cluster-aws-inside composition to reuse existing AWS resources
@@ -23,7 +26,7 @@ A demo showcasing:
 - Helm 3.7
 - Microk8s 1.23 (control cluster)
 - ArgoCD 2.21
-- Crossplane 1.5
+- Crossplane 1.6
 - AWS provider 0.22
 - Helm provider 0.9
 - AWS EKS 1.21

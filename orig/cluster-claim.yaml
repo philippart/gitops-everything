@@ -6,10 +6,13 @@ metadata:
     cluster-owner: laurent
 spec:
   id: team-a
+  # to be updated
+  account: 123456789012
   compositionSelector:
     matchLabels:
       provider: aws
       cluster: eks
+      account: inside
   parameters:
     # Possible values small, medium, large
     nodeSize: small
