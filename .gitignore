@@ -1,4 +1,8 @@
+# ignore credentials
+kubeconfig.yaml
 *creds.conf
 *creds.yaml
+*.pem
+
+# ignore temporary files
 tmp.*.yaml
-kubeconfig.yaml

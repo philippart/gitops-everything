@@ -1,6 +1,7 @@
 # GitOps for Everything
 Forked from [Combining Argo CD (GitOps), Crossplane (Control Plane), And KubeVela (OAM)](https://youtu.be/eEcgn_gU3SM)
-A demo showcasing: 
+
+This repo is showcasing: 
 1. infrastructure, managed service and application deployment based on GitOps principles, and 
 2. a split of responsibility between Dev and Platform teams.
 
