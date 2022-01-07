@@ -1,3 +1,4 @@
+# This is for EKS clusters in outside accounts with public subnets
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
@@ -5,6 +6,7 @@ metadata:
   labels:
     provider: aws
     cluster: eks
+    access: public
 spec:
   compositeTypeRef:
     apiVersion: nokia.com/v1alpha1
@@ -269,14 +271,14 @@ spec:
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
-  - name: sc-nodepool
+  - name: sg-nodepool
     base:
       apiVersion: ec2.aws.crossplane.io/v1beta1
       kind: SecurityGroup
       spec:
         forProvider:
           description: Cluster communication with worker nodes
-          groupName: nokia-catalog
+          groupName: nokia-cluster
           region: eu-central-1
           vpcIdSelector:
             matchControllerRef: true
@@ -289,7 +291,7 @@ spec:
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
-  - name: subnet-nodepool-1a
+  - name: subnet-public-1a
     base:
       apiVersion: ec2.aws.crossplane.io/v1beta1
       kind: Subnet
@@ -315,7 +317,7 @@ spec:
       - type: string
         string:
           fmt: "%s-1a"
-  - name: subnet-nodepool-1b
+  - name: subnet-public-1b
     base:
       apiVersion: ec2.aws.crossplane.io/v1beta1
       kind: Subnet

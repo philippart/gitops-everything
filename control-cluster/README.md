@@ -25,7 +25,7 @@ microk8s config > ~/.kube/config
 ```
 
 ## with eksctl
-Update the eksctl.yaml with your AWS details and then run
+Update eksctl.yaml with your AWS details and then run
 ```
 eksctl create cluster -f eksctl.yaml --auto-kubeconfig
 or

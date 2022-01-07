@@ -6,7 +6,7 @@ spec:
   connectionSecretKeys:
   - kubeconfig
   defaultCompositionRef:
-    name: cluster-aws
+    name: cluster-aws-intranet
   group: nokia.com
   names:
     kind: CompositeCluster

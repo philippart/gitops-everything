@@ -1,3 +1,4 @@
 *creds.conf
 *creds.yaml
+tmp.*.yaml
 kubeconfig.yaml

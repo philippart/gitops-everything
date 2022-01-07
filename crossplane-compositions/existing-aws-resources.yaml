@@ -15,20 +15,20 @@ spec:
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: SecurityGroup
 metadata:
-  name: sg-nodepool
+  name: sg-intranet
   annotations:
     crossplane.io/external-name: sg-037997298a1a780fc
 spec:
   forProvider:
     description: default VPC security group
-    groupName: nokia-nodepool
+    groupName: nokia-intranet
 
 ---
 
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
 metadata:
-  name: subnet-nodepool-1a
+  name: subnet-intranet-1a
   annotations:
     crossplane.io/external-name: subnet-0755889bac75464a0
   labels:
@@ -46,7 +46,7 @@ spec:
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
 metadata:
-  name: subnet-nodepool-1b
+  name: subnet-intranet-1b
   annotations:
     crossplane.io/external-name: subnet-06d7e0bbd0d660f1e
   labels:

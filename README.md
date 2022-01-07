@@ -10,6 +10,7 @@ A demo showcasing:
 - Remove Civo, Kuvela and Sealed-Secrets
 - Upgrade Crossplane, AWS and Helm providers
 - Script to update AWS credentials
+- Add eksctl option for creating the control cluster
 - Update composite resource definitions and compositions
   - Update repo URLs and resource path
   - Use EC2 t4g instances instead of t3
@@ -17,9 +18,15 @@ A demo showcasing:
   - Import and reference existing AWS managed resources
   - Add permission boundary to IAM roles
   - Require AWS account number in the Cluster XRD 
+- Create 3 compositions for AWS EKS clusters
+  - outside accounts with public subnets
+  - inside accounts with intranet subnets
+  - inside accounts with private subnets (default composition)
+- Add readme files to various directories
+- Add script to retrieve AWS inventory
 
 ## Todo
-- Create a new cluster-aws-inside composition to reuse existing AWS resources
+- Create managed resource manifest for NAT instance (private subnet -> intranet)
 - Test the whole thing
 
 # Dependencies

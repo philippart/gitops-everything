@@ -9,7 +9,7 @@ spec:
   # to be updated
   account: 123456789012
   compositionRef:
-    name: cluster-aws
+    name: cluster-aws-intranet
   parameters:
     # Possible values small, medium, large
     nodeSize: small

@@ -1,3 +1,4 @@
+# This is for EKS clusters in inside accounts with intranet subnets
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
@@ -5,7 +6,7 @@ metadata:
   labels:
     provider: aws
     cluster: eks
-    account: inside
+    access: intranet
 spec:
   compositeTypeRef:
     apiVersion: nokia.com/v1alpha1
@@ -31,8 +32,10 @@ spec:
           resourcesVpcConfig:
             endpointPrivateAccess: true
             endpointPublicAccess: true
+            # reference to existing security group
             securityGroupIdRefs:
-            - name: sg-nodepool
+            - name: sg-intranet
+            # select existing intranet subnets
             subnetIdSelector:
               matchLabels:
                 access: intranet
@@ -74,6 +77,7 @@ spec:
             matchControllerRef: true
             matchLabels:
               role: nodegroup
+          # select existing intranet subnets
           subnetSelector:
             matchLabels:
               access: intranet
@@ -154,7 +158,7 @@ spec:
           role: nodegroup
       spec:
         forProvider:
-          description:  Allow EC2 to access other services like CNI, ECR...
+          description: Allow EC2 to access other services like CNI and ECR
           assumeRolePolicyDocument: |
             {
               "Version": "2012-10-17",
