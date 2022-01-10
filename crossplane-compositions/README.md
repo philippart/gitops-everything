@@ -6,7 +6,11 @@ Login and run:
 ```
 ./get-aws-resources.sh
 ```
-This will produce tmp.<resource_type>.yaml files for each resource type.
+This will produce tmp.<resource_type>.yaml files for each resource type, namely:
+- tmp.route-tables.yaml
+- tmp.security-groups.yaml
+- tmp.subnets.yaml
+- tmp.vpcs.yaml
 
 ## Update the following files
 

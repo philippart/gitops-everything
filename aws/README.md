@@ -1,7 +1,7 @@
 # Setup AWS
 
 Using the cluster-aws-private composition assumes a NAT instance is already created.
-In the future this may be included in the composition or added as a managed or composite resource.
+In the future this may be included in the cluster composition or added as a managed or composite resource.
 
 ## Create a NAT instance with AWS CLI
 

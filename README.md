@@ -14,7 +14,7 @@ This repo is showcasing:
 - Add eksctl option for creating the control cluster
 - Update composite resource definitions and compositions
   - Update repo URLs and resource path
-  - Use EC2 t4g instances instead of t3
+  - Use EC2 t3a instances instead of t3 (avoid t4g arm64 architecture)
   - Change region to eu-central-1
   - Import and reference existing AWS managed resources
   - Add permission boundary to IAM roles

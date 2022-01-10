@@ -1,26 +1,15 @@
-#!/bin/bash
+#!/bin/bash +x
 # Terminate the NAT instance
 set -eu
 
 ## Parse arguments
-while getopts "hi:g:" opt; do
+while getopts ":hi:g:" opt; do
   case "${opt}" in
-    h)
-      echo "Usage: ${0##*/} -i <instance-id> -g <security-group-id>"
-      exit 0
-      ;;
-    i)
-      AWS_EC2_INSTANCE_ID=$OPTARG
-      ;;
-    g)
-      AWS_NAT_SECURITY_GROUP_ID=$OPTARG
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-    :)
-      echo "Invalid option: -$OPTARG requires an argument" >&2
-      ;;
+    h) echo "Usage: ${0##*/} -i <instance-id> -g <security-group-id>" ; exit 0 ;;
+    i) AWS_EC2_INSTANCE_ID=$OPTARG ;;
+    g) AWS_NAT_SECURITY_GROUP_ID=$OPTARG ;;
+    \?) echo "Invalid option: -$OPTARG" ; exit 1 ;;
+    :) echo "Invalid option: -$OPTARG requires an argument" ; exit 1 ;;
   esac
 done
 shift $((OPTIND -1))

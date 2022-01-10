@@ -81,7 +81,7 @@ spec:
             maxSize: 3
             desiredSize: 1
           instanceTypes:
-          - t4g.small
+          - t3a.small
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
@@ -90,9 +90,9 @@ spec:
       transforms:
       - type: map
         map:
-          small: t4g.small
-          medium: t4g.medium
-          large: t4g.large
+          small: t3a.small
+          medium: t3a.medium
+          large: t3a.large
     - fromFieldPath: spec.parameters.minNodeCount
       toFieldPath: spec.forProvider.scalingConfig.minSize
     - fromFieldPath: spec.parameters.minNodeCount
